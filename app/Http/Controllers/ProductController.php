@@ -12,17 +12,18 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return Inertia::render('Mostrar', compact('products'));
+        return Inertia::render('Product/Mostrar', compact('products'));
     }
 
     public function create()
     {
-        return Inertia::render('FormCrear');
+        return Inertia::render('Product/FormCrear');
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'name' => 'required',
             'description' => 'required',
             'price' => 'required',
         ]);
@@ -37,7 +38,7 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        return Inertia::render('FormEditar', compact('product'));
+        return Inertia::render('Product/FormEditar', compact('product'));
     }
 
     public function update(Request $request, Product $product)
